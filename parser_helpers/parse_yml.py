@@ -1,14 +1,8 @@
+from .yml_entry import YMLEntry, YMLImage
+
 from bs4 import BeautifulSoup
-from dataclasses import dataclass
-import glob
 from typing import Union, List
-import yaml
-import datetime
 import unidecode
-import requests
-from urllib.parse import urlparse
-import os
-from yml_entry import YMLEntry, YMLImage
 
 def parse_yml(fname: str) -> Union[YMLEntry,None]:    
 
@@ -53,7 +47,8 @@ def parse_yml(fname: str) -> Union[YMLEntry,None]:
         time_human=time_human,
         cover_img_url=cover_img_url,
         url=url,
-        fname=fname
+        fname=fname,
+        imgs=imgs
         )
 
 def get_ymls(fnames: List[str]) -> List[YMLEntry]:
