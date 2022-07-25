@@ -3,6 +3,7 @@ from .yml_entry import YMLEntry, YMLImage
 from bs4 import BeautifulSoup
 from typing import Union, List
 import unidecode
+import yaml
 
 def parse_yml(fname: str) -> Union[YMLEntry,None]:    
 
@@ -35,7 +36,7 @@ def parse_yml(fname: str) -> Union[YMLEntry,None]:
     imgs = []
     for entry in img_entries:
         imgs.append(YMLImage(
-            basename=entry['data-image-id'], 
+            fname_wo_path=entry['data-image-id'], 
             url=entry['src'], 
             caption=""
             ))
@@ -51,8 +52,19 @@ def parse_yml(fname: str) -> Union[YMLEntry,None]:
         imgs=imgs
         )
 
-def get_ymls(fnames: List[str]) -> List[YMLEntry]:
+def extract_ymls(fnames: List[str]) -> List[YMLEntry]:
     return [x for x in [parse_yml(fname) for fname in fnames] if x != None]
+
+def write_ymls(ymls: List[YMLEntry], fname: str):
+    data_yml = []
+    for i,d in enumerate(ymls):
+        k = 'entry' + str(i)
+
+        dat = { k: d.get_yaml() }
+        data_yml.append(dat)
+
+    with open(fname, 'w') as f:
+        yaml.dump(data_yml, f)
 
 '''
 fnames = glob.glob('posts/*.html')
