@@ -49,10 +49,12 @@ def html_to_post(html_fname: str) -> Union[PostEntry,None]:
     img_entries = soup.find_all("img")
     imgs = []
     for entry in img_entries:
+        basename, ext = os.path.splitext(entry['data-image-id'])
         imgs.append(PostImage(
-            fname_wo_path=entry['data-image-id'], 
+            basename=basename, 
             url=entry['src'], 
-            caption=""
+            caption="",
+            ext=ext
             ))
 
     cover_img = [ img for img in imgs if img.url == cover_img_url ]

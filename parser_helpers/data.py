@@ -7,24 +7,28 @@ import os
 class PostImage:
     # URl
     url: str
-    # Filename without the path
-    fname_wo_path: str
+    # Basename
+    basename: str
     # Caption
     caption: str
+    # Extension
+    ext: str
 
     @classmethod
     def from_json(cls, d: Dict):
         return cls(
             url=d['url'],
-            fname_wo_path=d['fname_wo_path'],
-            caption=d['caption']
+            basename=d['basename'],
+            caption=d['caption'],
+            ext=d['ext']
         )
 
     def to_json(self) -> Dict:
         return {
             'url': self.url,
-            'fname_wo_path': self.fname_wo_path,
-            'caption': self.caption
+            'basename': self.basename,
+            'caption': self.caption,
+            'ext': self.ext
             }
 
 @dataclass
