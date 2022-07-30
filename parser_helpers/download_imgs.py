@@ -28,7 +28,7 @@ def download_imgs_for_entry(entry: PostEntry, img_dirname: str):
         fname = os.path.join(img_dirname_entry, img.fname_wo_path)
         download_img(img.url, fname)
 
-def download_imgs_from_md(entries: List[PostEntry], img_dirname: str, limit: Union[int,None] = 1):
+def download_imgs_from_md(entries: List[PostEntry], img_dirname: str, limit: Union[int,None] = None):
     if limit == None:
         limit = len(entries)
     for entry in entries[:limit]:

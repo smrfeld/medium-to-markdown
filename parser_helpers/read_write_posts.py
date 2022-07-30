@@ -10,6 +10,6 @@ def write_posts_to_yml(posts: List[PostEntry], yml_fname: str):
 
 def read_posts_from_yml(yml_fname: str) -> List[PostEntry]:
     with open(yml_fname, 'r') as f:
-        res = yaml.load(f)
+        res = yaml.safe_load(f)
 
     return [ PostEntry.from_json(d) for d in res ]

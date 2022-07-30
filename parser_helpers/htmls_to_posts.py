@@ -55,12 +55,19 @@ def html_to_post(html_fname: str) -> Union[PostEntry,None]:
             caption=""
             ))
 
+    cover_img = [ img for img in imgs if img.url == cover_img_url ]
+    if len(cover_img) > 0:
+        cover_img = cover_img[0]
+        cover_img_idx = imgs.index(cover_img)
+    else:
+        cover_img_idx = None
+
     # Construct yml data
     return PostEntry(
         title=title, 
         time=time, 
         time_human=time_human,
-        cover_img_url=cover_img_url,
+        cover_img_idx=cover_img_idx,
         url=url,
         fname=html_fname,
         imgs=imgs

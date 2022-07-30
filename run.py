@@ -27,7 +27,7 @@ def download_imgs(args):
     dir_name = os.path.join(args.output_dir, 'img')
     if not os.path.isdir(dir_name):
         os.makedirs(dir_name)
-    download_imgs(posts, 'output')
+    download_imgs_from_md(posts, dir_name)
 
 if __name__ == "__main__":
 
