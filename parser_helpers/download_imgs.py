@@ -1,7 +1,7 @@
-from .yml_entry import YMLEntry
+from .data import PostEntry
 import requests
 import os
-from typing import List
+from typing import List, Union
 
 def download_img(url: str, fname_dest: str):
     print("Downloading entry: %s from %s" % (fname_dest, url))
@@ -10,7 +10,7 @@ def download_img(url: str, fname_dest: str):
     with open(fname_dest, 'wb') as handler:
         handler.write(img_data)
 
-def download_imgs_for_entry(entry: YMLEntry, img_dirname: str):
+def download_imgs_for_entry(entry: PostEntry, img_dirname: str):
     # Make directory
     if not os.path.isdir(img_dirname):
         os.makedirs(img_dirname)
@@ -28,6 +28,8 @@ def download_imgs_for_entry(entry: YMLEntry, img_dirname: str):
         fname = os.path.join(img_dirname_entry, img.fname_wo_path)
         download_img(img.url, fname)
 
-def download_imgs(entries: List[YMLEntry], img_dirname: str):
-    for entry in entries:
+def download_imgs_from_md(entries: List[PostEntry], img_dirname: str, limit: Union[int,None] = 1):
+    if limit == None:
+        limit = len(entries)
+    for entry in entries[:limit]:
         download_imgs_for_entry(entry, img_dirname)

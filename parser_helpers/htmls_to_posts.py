@@ -1,14 +1,28 @@
-from .yml_entry import YMLEntry, YMLImage
+from .data import PostEntry, PostImage
 
 from bs4 import BeautifulSoup
 from typing import Union, List
 import unidecode
-import yaml
+import glob
+import os
 
-def parse_yml(fname: str) -> Union[YMLEntry,None]:    
+def get_fnames(posts_dir: str, ignore_drafts: bool = True) -> List[str]:
+    
+    # HTML
+    glob_str = os.path.join(posts_dir, '*.html')
+    fnames = glob.glob(glob_str)
+
+    # Remove drafts
+    if ignore_drafts:
+        drafts = glob.glob('posts/draft*.html')
+        fnames = list(set(fnames) - set(drafts))
+
+    return fnames
+
+def html_to_post(html_fname: str) -> Union[PostEntry,None]:    
 
     # Read file
-    with open(fname,"r") as f:
+    with open(html_fname,"r") as f:
         content = f.read()
 
     # Parse HTML
@@ -35,36 +49,25 @@ def parse_yml(fname: str) -> Union[YMLEntry,None]:
     img_entries = soup.find_all("img")
     imgs = []
     for entry in img_entries:
-        imgs.append(YMLImage(
+        imgs.append(PostImage(
             fname_wo_path=entry['data-image-id'], 
             url=entry['src'], 
             caption=""
             ))
 
     # Construct yml data
-    return YMLEntry(
+    return PostEntry(
         title=title, 
         time=time, 
         time_human=time_human,
         cover_img_url=cover_img_url,
         url=url,
-        fname=fname,
+        fname=html_fname,
         imgs=imgs
         )
 
-def extract_ymls(fnames: List[str]) -> List[YMLEntry]:
-    return [x for x in [parse_yml(fname) for fname in fnames] if x != None]
-
-def write_ymls(ymls: List[YMLEntry], fname: str):
-    data_yml = []
-    for i,d in enumerate(ymls):
-        k = 'entry' + str(i)
-
-        dat = { k: d.get_yaml() }
-        data_yml.append(dat)
-
-    with open(fname, 'w') as f:
-        yaml.dump(data_yml, f)
+def htmls_to_posts(fnames: List[str]) -> List[PostEntry]:
+    return [x for x in [html_to_post(fname) for fname in fnames] if x != None]
 
 '''
 fnames = glob.glob('posts/*.html')
