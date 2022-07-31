@@ -6,19 +6,6 @@ import os
 
 from bs4 import BeautifulSoup
 
-# Function to remove tags
-def remove_tags(html):
-  
-    # parse html content
-    soup = BeautifulSoup(html, "html.parser")
-  
-    for data in soup(['style']):
-        # Remove tags
-        data.decompose()
-  
-    # return data by retrieving the tag content
-    return ' '.join(soup.stripped_strings)
-
 INVALID_TAGS = ['style']
 
 def sanitize_html(value):
@@ -32,9 +19,12 @@ def sanitize_html(value):
     return soup.renderContents()
 
 class Converter(MarkdownConverter):
-    # def convert_img(self, el, text, convert_as_inline):
-    #     return super().convert_img(el, text, convert_as_inline) + '\n\n'
-    pass
+
+    def convert_script(self, el, text, convert_as_inline):
+        return str(el) + '\n\n'
+
+    def convert_img(self, el, text, convert_as_inline):
+        return super().convert_img(el, text, convert_as_inline) + '\n\n'
 
 def to_md(html, **options):
     return Converter(**options).convert(html)
