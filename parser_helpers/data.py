@@ -9,8 +9,6 @@ class PostImage:
     url: str
     # Basename
     basename: str
-    # Caption
-    caption: str
     # Extension
     ext: str
 
@@ -19,7 +17,6 @@ class PostImage:
         return cls(
             url=d['url'],
             basename=d['basename'],
-            caption=d['caption'],
             ext=d['ext']
         )
 
@@ -27,7 +24,6 @@ class PostImage:
         return {
             'url': self.url,
             'basename': self.basename,
-            'caption': self.caption,
             'ext': self.ext
             }
 

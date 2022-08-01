@@ -7,11 +7,12 @@ def convert_html_to_md(args):
     html_fnames = get_fnames(args.posts_dir)
     posts = htmls_to_posts(html_fnames)
 
-    # YML
+    if not os.path.isdir(args.output_dir):
+        os.makedirs(args.output_dir)
+
     yml_fname = os.path.join(args.output_dir, '%s.yml' % args.output_name)
     write_posts_to_yml(posts, yml_fname)
 
-    # MD
     convert_posts_to_md(args.posts_dir, args.output_dir, args.md_dir, posts)
 
 def resize_cover_imgs0(args):
@@ -24,7 +25,6 @@ def download_imgs(args, cover_img_only: bool):
     yml_fname = os.path.join(args.output_dir, '%s.yml' % args.output_name)
     posts = read_posts_from_yml(yml_fname)
 
-    # Download
     dir_name = os.path.join(args.output_dir, args.img_dir)
     if not os.path.isdir(dir_name):
         os.makedirs(dir_name)
@@ -51,14 +51,12 @@ if __name__ == "__main__":
                 help='Directory in which resized cover images are stored.', required=False)
     parser.add_argument('--new-size', dest='new_size', default=150, type=int,
                 help='The new size to resize images to.', required=False)
-    #parser.add_argument('--include-html-style', dest='include_html_style', default=False,
-    #            help='True to include the style from HTML.', required=False, action='store_true')
 
     args = parser.parse_args()
 
     if args.command == 'convert':
         convert_html_to_md(args)
-        download_imgs(args, True)
+        download_imgs(args, cover_img_only=True)
         resize_cover_imgs0(args)
     elif args.command == 'convert-html-to-md':
         convert_html_to_md(args)

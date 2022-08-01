@@ -23,8 +23,22 @@ class Converter(MarkdownConverter):
     def convert_script(self, el, text, convert_as_inline):
         return str(el) + '\n\n'
 
+    def convert_figcaption(self, el, text, convert_as_inline):
+        return str(el) + '\n\n'
+
     def convert_img(self, el, text, convert_as_inline):
-        return super().convert_img(el, text, convert_as_inline) + '\n\n'
+        # return super().convert_img(el, text, convert_as_inline) + '\n\n'
+        return str(el) + '\n\n'
+
+    def convert_a(self, el, text, convert_as_inline):
+        class0 = el.get('class')
+        if class0 != None and 'markup--mixtapeEmbed-anchor' in class0:
+            return super().convert_a(el, text, convert_as_inline) + '\n\n'
+        else:
+            return super().convert_a(el, text, convert_as_inline)
+
+    def convert_em(self, el, text, convert_as_inline):
+        return ""
 
 def to_md(html, **options):
     return Converter(**options).convert(html)

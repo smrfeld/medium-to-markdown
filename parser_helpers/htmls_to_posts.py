@@ -53,7 +53,6 @@ def html_to_post(html_fname: str) -> Union[PostEntry,None]:
         imgs.append(PostImage(
             basename=basename, 
             url=entry['src'], 
-            caption="",
             ext=ext
             ))
 
