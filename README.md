@@ -2,6 +2,14 @@
 
 Convert your medium articles from their `html` format to `markdown`. A deep copy of your data can be made, including images.
 
+## Example
+
+An example input and output are located in the `example` directory.
+
+<img src="readme_figures/html.png" alt="drawing" width="400"/>
+
+<img src="readme_figures/markdown.png" alt="drawing" width="400"/>
+
 ## Usage
 
 1. Go to your medium account and request a copy of your data.
@@ -37,7 +45,3 @@ Convert your medium articles from their `html` format to `markdown`. A deep copy
     ```
     python run.py -h
     ```
-
-## Example
-
-An example input and output are located in the `example` directory.
