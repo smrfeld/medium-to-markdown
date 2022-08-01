@@ -1,7 +1,6 @@
 from .data import PostEntry
 
 import os
-import glob
 from typing import List
 
 def run_command(command: str):

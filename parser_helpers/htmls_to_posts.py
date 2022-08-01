@@ -76,36 +76,3 @@ def html_to_post(html_fname: str) -> Union[PostEntry,None]:
 
 def htmls_to_posts(fnames: List[str]) -> List[PostEntry]:
     return [x for x in [html_to_post(fname) for fname in fnames] if x != None]
-
-'''
-fnames = glob.glob('posts/*.html')
-
-# Remove drafts
-drafts = glob.glob('posts/draft*.html')
-fnames = list(set(fnames) - set(drafts))
-
-# Parse
-data = []
-for fname in fnames:
-    data0 = parse(fname)
-    if data0 != None:
-        data.append(data0)
-
-# Resize
-os.system("cd img/blog && magick mogrify -resize 150x150 *.png")
-os.system("cd img/blog && magick mogrify -resize 150x150 *.jpeg")
-# os.system("cd img/blog && magick mogrify -resize 150x150 *.jpg")
-
-data_yml = []
-for i,d in enumerate(data):
-    k = 'entry' + str(i)
-
-    dat = { k: d.get_yaml() }
-    data_yml.append(dat)
-
-with open('blog.yml', 'w') as f:
-    yaml.dump(data_yml, f)
-
-print("Wrote blog.yml")
-print("WARNING: YOU MUST REINDENT 4 -> 2 spaces in the yml file manually")
-'''
