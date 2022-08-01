@@ -1,0 +1,17 @@
+- basename: 2021-12-16_Export-Safari-reading-list-using-Python-dc36992766e4
+  cover_img_idx: 0
+  fname: posts/2021-12-16_Export-Safari-reading-list-using-Python-dc36992766e4.html
+  imgs:
+  - basename: 1*smDbzU8vO2mMObcS0jx03g
+    ext: .jpeg
+    url: https://cdn-images-1.medium.com/max/800/1*smDbzU8vO2mMObcS0jx03g.jpeg
+  - basename: 1*XkSxG3aHOIeHmFSD8heXCw
+    ext: .png
+    url: https://cdn-images-1.medium.com/max/800/1*XkSxG3aHOIeHmFSD8heXCw.png
+  - basename: 1*mLvsKlqXiUfUcVY7kzkm9A
+    ext: .png
+    url: https://cdn-images-1.medium.com/max/800/1*mLvsKlqXiUfUcVY7kzkm9A.png
+  time: '2021-12-16T19:49:19.084Z'
+  time_human: December 16, 2021
+  title: Export Safari reading list using Python
+  url: https://medium.com/@oliver-k-ernst/export-safari-reading-list-using-python-dc36992766e4

@@ -1,4 +1,6 @@
 output/
 posts/
+!example/output/
+!example/posts/
 .DS_Store
 __pycache__/

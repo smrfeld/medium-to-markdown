@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Export Safari reading list using Python</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Export Safari reading list using Python</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Clean up your teeming reading list.
+</section>
+<section data-field="body" class="e-content">
+<section name="a39b" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="d51e" id="d51e" class="graf graf--h3 graf--leading graf--title">Export Safari reading list using Python</h3><p name="6c48" id="6c48" class="graf graf--p graf-after--h3">Clean up your teeming reading list.</p><figure name="3b16" id="3b16" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*smDbzU8vO2mMObcS0jx03g.jpeg" data-width="960" data-height="720" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*smDbzU8vO2mMObcS0jx03g.jpeg"><figcaption class="imageCaption">Image credit: author (Oliver K. Ernst)</figcaption></figure><p name="d0fd" id="d0fd" class="graf graf--p graf-after--figure"><a href="https://github.com/smrfeld/export-safari-reading-list" data-href="https://github.com/smrfeld/export-safari-reading-list" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Here is the GitHub repo. with the script.</a></p><p name="f25b" id="f25b" class="graf graf--p graf-after--p">If you are like me, your reading list is overflowing. Mine is over 1000+ entries. I use it daily to quickly remind myself of useful websites I’ve found, but I never bother to clean it up after those sites have used their purpose.</p><p name="7478" id="7478" class="graf graf--p graf-after--p">I didn’t want to clean it up manually by clicking through 1000+ items with a mouse is tedious. There is a shortcut to remove all items, but before doing that I wanted to export the data.</p><figure name="e1a3" id="e1a3" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*XkSxG3aHOIeHmFSD8heXCw.png" data-width="1572" data-height="715" src="https://cdn-images-1.medium.com/max/800/1*XkSxG3aHOIeHmFSD8heXCw.png"><figcaption class="imageCaption">JSON exported reading list.</figcaption></figure><figure name="d315" id="d315" class="graf graf--figure graf-after--figure"><img class="graf-image" data-image-id="1*mLvsKlqXiUfUcVY7kzkm9A.png" data-width="1521" data-height="229" src="https://cdn-images-1.medium.com/max/800/1*mLvsKlqXiUfUcVY7kzkm9A.png"><figcaption class="imageCaption">CSV exported reading list.</figcaption></figure><p name="0b93" id="0b93" class="graf graf--p graf-after--figure graf--trailing">Here’s how it’s done.</p></div></div></section><section name="6421" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="4426" id="4426" class="graf graf--p graf--leading">Your reading list is stored in <code class="markup--code markup--p-code">~/Library/Safari/Bookmarks.plist</code> (at least, in Mac <code class="markup--code markup--p-code">11.4</code> Big Sur it is). Additionally, icons for the reading list are stored in <code class="markup--code markup--p-code">~/Library/Safari/ReadingListArchives</code> .</p><p name="0052" id="0052" class="graf graf--p graf-after--p">To read the <code class="markup--code markup--p-code">.plist</code> file format in Python, it is easiest to use the <a href="https://docs.python.org/3/library/plistlib.html" data-href="https://docs.python.org/3/library/plistlib.html" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">plistlib</a> library:</p><pre name="6210" id="6210" class="graf graf--pre graf-after--p graf--trailing">pip install plistlib</pre></div></div></section><section name="e3dc" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="acd1" id="acd1" class="graf graf--h3 graf--leading">The complete script</h3><p name="91a4" id="91a4" class="graf graf--p graf-after--h3">Here is the complete script — the explanation is below:</p><div name="3289" id="3289" class="graf graf--mixtapeEmbed graf-after--p"><a href="https://github.com/smrfeld/export-safari-reading-list/blob/main/export_reading_list.py" data-href="https://github.com/smrfeld/export-safari-reading-list/blob/main/export_reading_list.py" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://github.com/smrfeld/export-safari-reading-list/blob/main/export_reading_list.py"><strong class="markup--strong markup--mixtapeEmbed-strong">export-safari-reading-list/export_reading_list.py at main · smrfeld/export-safari-reading-list</strong><br><em class="markup--em markup--mixtapeEmbed-em">This file contains bidirectional Unicode text that may be interpreted or compiled differently than what appears below…</em>github.com</a><a href="https://github.com/smrfeld/export-safari-reading-list/blob/main/export_reading_list.py" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="1e3dbca4ce878c112f08279b81d1bd0a" data-thumbnail-img-id="0*3ZiSZ22lqAveCljH" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/0*3ZiSZ22lqAveCljH);"></a></div><h3 name="4845" id="4845" class="graf graf--h3 graf-after--mixtapeEmbed">Usage</h3><h4 name="0e76" id="0e76" class="graf graf--h4 graf-after--h3">Basic usage:</h4><ul class="postList"><li name="c0f5" id="c0f5" class="graf graf--li graf-after--h4">Export to CSV:</li></ul><pre name="e55f" id="e55f" class="graf graf--pre graf-after--li">python export_reading_list.py csv reading_list.csv</pre><p name="9426" id="9426" class="graf graf--p graf-after--pre">will write the reading list to <code class="markup--code markup--p-code">reading_list.csv</code>.</p><ul class="postList"><li name="349a" id="349a" class="graf graf--li graf-after--p">Export to JSON:</li></ul><pre name="2fce" id="2fce" class="graf graf--pre graf-after--li">python export_reading_list.py json reading_list.json</pre><p name="c2ca" id="c2ca" class="graf graf--p graf-after--pre">will write the reading list to <code class="markup--code markup--p-code">reading_list.json</code>.</p><h4 name="bd30" id="bd30" class="graf graf--h4 graf-after--p">Options:</h4><ul class="postList"><li name="c766" id="c766" class="graf graf--li graf-after--h4">Also copy the reading list icons:</li></ul><pre name="0d46" id="0d46" class="graf graf--pre graf-after--li">python export_reading_list.py csv reading_list.csv — dir-icons-out reading_list_icons</pre><p name="ae66" id="ae66" class="graf graf--p graf-after--pre">copies the icons to the folder <code class="markup--code markup--p-code">reading_list_icons</code>. They match up to the entries through the <code class="markup--code markup--p-code">WebBookmarkUUID</code> key.</p><ul class="postList"><li name="903f" id="903f" class="graf graf--li graf-after--p">Specify the source directory for the icons:</li></ul><pre name="8d9d" id="8d9d" class="graf graf--pre graf-after--li">python export_reading_list.py csv reading_list.csv — dir-icons ~/Library/Safari/ReadingListArchives</pre><p name="e2a6" id="e2a6" class="graf graf--p graf-after--pre">The default is <code class="markup--code markup--p-code">~/Library/Safari/ReadingListArchives</code>.</p><ul class="postList"><li name="ff91" id="ff91" class="graf graf--li graf-after--p">Specify the source directory for the reading list <code class="markup--code markup--li-code">.plist</code> file:</li></ul><pre name="0e63" id="0e63" class="graf graf--pre graf-after--li">python export_reading_list.py csv reading_list.csv — fname-bookmarks ~/Library/Safari/Bookmarks.plist</pre><p name="6a93" id="6a93" class="graf graf--p graf-after--pre">The default is <code class="markup--code markup--p-code">~/Library/Safari/Bookmarks.plist</code>.</p><ul class="postList"><li name="45ed" id="45ed" class="graf graf--li graf-after--p">Include cached data for the websites:</li></ul><pre name="378d" id="378d" class="graf graf--pre graf-after--li">python export_reading_list.py csv reading_list.csv — include-data</pre><p name="5f43" id="5f43" class="graf graf--p graf-after--pre graf--trailing">The data is written to the <code class="markup--code markup--p-code">Data</code> field. The default is the<code class="markup--code markup--p-code">--exclude-data</code> option, which excludes the data.</p></div></div></section><section name="5d61" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="800c" id="800c" class="graf graf--h3 graf--leading">Explanation of the script</h3><p name="9197" id="9197" class="graf graf--p graf-after--h3">First, copy the <code class="markup--code markup--p-code">plist</code> file for safety:</p><figure name="2032" id="2032" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/smrfeld/803aa0684a3019bbd7cfe9d64a502c3a.js"></script></figure><p name="ebbc" id="ebbc" class="graf graf--p graf-after--figure">Next, find reading list elements in this terribly formatted dictionary:</p><figure name="fcc5" id="fcc5" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/smrfeld/ec78f0a078842e1e60849e0ede1d3a29.js"></script></figure><p name="2b97" id="2b97" class="graf graf--p graf-after--figure">Convert the reading list dictionaries to custom objects:</p><figure name="9223" id="9223" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/smrfeld/54d38e3dfdec72b1b8e5553448353098.js"></script></figure><p name="d191" id="d191" class="graf graf--p graf-after--figure">Finally, dump the entries to JSON or CSV:</p><figure name="7022" id="7022" class="graf graf--figure graf--iframe graf-after--p graf--trailing"><script src="https://gist.github.com/smrfeld/22ce465a643f6056a3cc8f8b519d1615.js"></script></figure></div></div></section><section name="90cb" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="67df" id="67df" class="graf graf--h3 graf--leading">Final thoughts</h3><p name="535a" id="535a" class="graf graf--p graf-after--h3 graf--trailing">Now we have a backup of the reading list. A future project may write an edited CSV or JSON file back to the reading list <code class="markup--code markup--p-code">plist</code> format recognized by Safari.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@oliver-k-ernst" class="p-author h-card">Oliver K. Ernst, Ph.D.</a> on <a href="https://medium.com/p/dc36992766e4"><time class="dt-published" datetime="2021-12-16T19:49:19.084Z">December 16, 2021</time></a>.</p><p><a href="https://medium.com/@oliver-k-ernst/export-safari-reading-list-using-python-dc36992766e4" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 24, 2022.</p></footer></article></body></html>
