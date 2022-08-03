@@ -37,6 +37,9 @@ class Converter(MarkdownConverter):
         else:
             return super().convert_a(el, text, convert_as_inline)
 
+    def convert_title(self, el, text, convert_as_inline):
+        return ""
+
     def convert_em(self, el, text, convert_as_inline):
         return ""
 
