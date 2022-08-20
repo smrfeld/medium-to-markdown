@@ -1,20 +1,5 @@
-
-
-
-Export Safari reading list using Python
+Export Safari reading list using Python
 =======================================
-
-
-
-
-Clean up your teeming reading list.
-
-
-
-
----
-
-### Export Safari reading list using Python
 
 Clean up your teeming reading list.
 
@@ -54,16 +39,19 @@ pip install plistlib
 
 ---
 
-### The complete script
+The complete script
+===================
 
 Here is the complete script — the explanation is below:
 
 [**export-safari-reading-list/export\_reading\_list.py at main · smrfeld/export-safari-reading-list**  
 github.com](https://github.com/smrfeld/export-safari-reading-list/blob/main/export_reading_list.py "https://github.com/smrfeld/export-safari-reading-list/blob/main/export_reading_list.py")
 
-### Usage
+Usage
+=====
 
-#### Basic usage:
+Basic usage:
+------------
 
 * Export to CSV:
 
@@ -81,7 +69,8 @@ python export\_reading\_list.py json reading\_list.json
 ```
 will write the reading list to `reading_list.json`.
 
-#### Options:
+Options:
+--------
 
 * Also copy the reading list icons:
 
@@ -119,7 +108,8 @@ The data is written to the `Data` field. The default is the`--exclude-data` opti
 
 ---
 
-### Explanation of the script
+Explanation of the script
+=========================
 
 First, copy the `plist` file for safety:
 
@@ -141,15 +131,7 @@ Finally, dump the entries to JSON or CSV:
 
 ---
 
-### Final thoughts
+Final thoughts
+==============
 
 Now we have a backup of the reading list. A future project may write an edited CSV or JSON file back to the reading list `plist` format recognized by Safari.
-
-
-
-By [Oliver K. Ernst, Ph.D.](https://medium.com/@oliver-k-ernst) on [December 16, 2021](https://medium.com/p/dc36992766e4).
-
-[Canonical link](https://medium.com/@oliver-k-ernst/export-safari-reading-list-using-python-dc36992766e4)
-
-Exported from [Medium](https://medium.com) on July 24, 2022.
-

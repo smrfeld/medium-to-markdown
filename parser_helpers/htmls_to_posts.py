@@ -56,6 +56,8 @@ def html_to_post(html_fname: str) -> Union[PostEntry,None]:
             ext=ext
             ))
 
+    summary = soup.find("section", {"data-field": "subtitle"}).text.strip()
+
     cover_img = [ img for img in imgs if img.url == cover_img_url ]
     if len(cover_img) > 0:
         cover_img = cover_img[0]
@@ -71,7 +73,8 @@ def html_to_post(html_fname: str) -> Union[PostEntry,None]:
         cover_img_idx=cover_img_idx,
         url=url,
         fname=html_fname,
-        imgs=imgs
+        imgs=imgs,
+        summary=summary
         )
 
 def htmls_to_posts(fnames: List[str]) -> List[PostEntry]:

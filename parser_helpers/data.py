@@ -43,6 +43,8 @@ class PostEntry:
     fname: str
     # Images
     imgs: List[PostImage]
+    # Summary
+    summary: str
 
     @property
     def basename(self) -> str:
@@ -54,6 +56,7 @@ class PostEntry:
         x = cls(
             title=d['title'],
             time=d['time'],
+            summary=d['summary'],
             time_human=d['time_human'],
             cover_img_idx=None,
             url=d['url'],
@@ -74,7 +77,8 @@ class PostEntry:
             'url': self.url,
             'fname': self.fname,
             'imgs': [ x.to_json() for x in self.imgs ],
-            'basename': self.basename
+            'basename': self.basename,
+            'summary': self.summary
         }
 
         if self.cover_img_idx != None:

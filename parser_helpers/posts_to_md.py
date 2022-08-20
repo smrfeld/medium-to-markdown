@@ -37,11 +37,36 @@ class Converter(MarkdownConverter):
         else:
             return super().convert_a(el, text, convert_as_inline)
 
+    def convert_footer(self, el, text, convert_as_inline):
+        if False:
+            return super().convert_footer(el, text, convert_as_inline)
+        else:
+            return ""
+
     def convert_title(self, el, text, convert_as_inline):
         return ""
 
     def convert_em(self, el, text, convert_as_inline):
         return ""
+
+    def convert_header(self, el, text, convert_as_inline):
+        return ""
+
+    def convert_head(self, el, text, convert_as_inline):
+        return ""
+
+    def convert_hn(self, n, el, text, convert_as_inline):
+        if n == 3:
+            n = 1
+        if n == 4:
+            n = 2
+        return super().convert_hn(n, el, text, convert_as_inline)
+
+    def convert_section(self, el, text, convert_as_inline):
+        if el.get('data-field') == 'subtitle':
+            return ""
+        else:
+            return text
 
 def to_md(html, **options):
     return Converter(**options).convert(html)
@@ -64,9 +89,12 @@ def convert_posts_to_md(posts_dir: str, output_dir: str, md_dir: str, posts: Lis
 
         # Convert
         strip = ['style']
-        md = to_md(html, strip=strip)
+        md = to_md(html, strip=strip).strip()
+        if md[:3] == '---':
+            md = md[3:].strip()
 
         # Write
         fname = os.path.join(dir_write, post.basename + ".md")
         with open(fname, 'w') as f:
             f.write(md)
+            print("Wrote post to markdown: %s" % fname)

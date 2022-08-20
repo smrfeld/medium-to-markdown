@@ -11,6 +11,7 @@
   - basename: 1*mLvsKlqXiUfUcVY7kzkm9A
     ext: .png
     url: https://cdn-images-1.medium.com/max/800/1*mLvsKlqXiUfUcVY7kzkm9A.png
+  summary: Clean up your teeming reading list.
   time: '2021-12-16T19:49:19.084Z'
   time_human: December 16, 2021
   title: Export Safari reading list using Python

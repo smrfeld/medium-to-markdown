@@ -35,7 +35,15 @@ def download_imgs(args, cover_img_only: bool):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Convert HTML files from Medium to markdown')
-    parser.add_argument('command', choices=['convert', 'convert-html-to-md', 'download-all-imgs', 'download-cover-imgs', 'resize-cover-imgs'])
+    parser.add_argument('command', 
+        choices=['convert', 'convert-html-to-md', 'download-all-imgs', 'download-cover-imgs', 'resize-cover-imgs'],
+        help='Command to run: \
+            convert runs all commands, \
+            convert-html-to-md converts html to md, \
+            download-all-imgs downloads all images, \
+            download-cover-imgs downloads only cover images, \
+            resize-cover-imgs resizes cover images'
+        )
 
     parser.add_argument('--posts-dir', dest='posts_dir', type=str, default='posts',
                     help='Posts directory', required=False)
